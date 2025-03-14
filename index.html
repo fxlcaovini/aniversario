@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./assets/images/birthday-cake.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+       
+        <div class="formulario">
+            <h2>
+                <span class="titulo-decorado">
+                    Cadastrar Aniversariante
+                </span>
+            </h2>
+            <form id="formAniversariante">
+                <input type="text" id="nome" placeholder="Nome do Aniversariante" required>
+                <input type="date" id="dataNascimento" required>
+                <input type="file" id="foto" accept="image/*" class="input-foto">
+                <select id="tipo" required>
+                    <option value="sub">Sub</option>
+                    <option value="viewer">Viewer</option>
+                    <option value="mod">Mod</option>
+                </select>
+                <button type="submit" class="btn-cadastrar">Cadastrar</button>
+            </form>
+        </div>
+
+        <div class="lista-aniversariantes">
+            <h2>
+                    Aniversariantes
+                </span>
+            </h2>
+            <div class="filtros">
+                <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
+                <button class="filtro-btn" data-filtro="sub">Sub</button>
+                <button class="filtro-btn" data-filtro="viewer">Viewer</button>
+                <button class="filtro-btn" data-filtro="mod">Mod</button>
+            </div>
+            <div id="listaAniversariantes"></div>
+        </div>
+
+        <div class="estatisticas">
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <span class="stat-numero">0</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-signature"></i>
+                <span class="stat-numero">0</span>
+                <span class="stat-label">Subs</span>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-user-friends"></i>
+                <span class="stat-numero">0</span>
+                <span class="stat-label">Viewers</span>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-shield"></i>
+                <span class="stat-numero">0</span>
+                <span class="stat-label">Mods</span>
+            </div>
+        </div>
+
+        
+        <div class="exportar">
+            <button id="btnExportar" class="btn-exportar" aria-label="Exportar aniversários para calendário">
+                <i class="fas fa-calendar-alt"></i>
+                Exportar para Calendário
+            </button>
+        </div>
+
+        <div class="acoes-extras">
+            <button class="btn-backup" onclick="gerenciador.exportarBackup()">
+                <i class="fas fa-download"></i> Backup
+            </button>
+            <button class="btn-backup" onclick="gerenciador.solicitarPermissaoNotificacao()">
+                <i class="fas fa-bell"></i> Ativar Notificações
+            </button>
+        </div>
+
+        <div class="busca">
+            <input 
+                type="text" 
+                id="busca" 
+                placeholder="Buscar aniversariante..."
+                class="input-busca"
+            >
+        </div>
+
+        <div class="proximo-aniversario">
+            <h2>
+                <span class="titulo-decorado">
+                    Próximo Aniversário
+                </span>
+            </h2>
+            <div class="countdown-card">
+                <div class="countdown-info">
+                    <span id="proximoNome">-</span>
+                    <div class="countdown-timer">
+                        <div class="countdown-item">
+                            <span id="dias">0</span>
+                            <label>Dias</label>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="horas">0</span>
+                            <label>Horas</label>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="minutos">0</span>
+                            <label>Min</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     
+    </div>
+
+    <audio id="somAlerta">
+        <source src="./assets/sounds/notification.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="somConfete">
+        <source src="./assets/sounds/party-horn.mp3" type="audio/mpeg">
+    </audio>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
