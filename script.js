@@ -45,6 +45,38 @@ class GerenciadorAniversarios {
 
         this.campoBusca = document.getElementById('busca');
         this.campoBusca.addEventListener('input', () => this.buscarAniversariantes());
+        this.configurarBotaoImportar();
+
+    }
+    configurarBotaoImportar() {
+        const fileInput = document.getElementById('fileInput');
+        const importButton = document.getElementById('importButton');
+
+        importButton.addEventListener('click', () => {
+            fileInput.click(); // Aciona o clique no input de arquivo
+        });
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const data = JSON.parse(e.target.result);
+                    this.importarUsuarios(data);
+                };
+                reader.readAsText(file);
+            } else {
+                alert('Por favor, selecione um arquivo para importar.');
+            }
+        });
+    }
+
+    importarUsuarios(data) {
+        this.aniversariantes = data; // Substitui os aniversariantes atuais pelos importados
+        this.salvarDados(); // Salva os dados no localStorage
+        this.renderizarLista(); // Atualiza a lista na interface
+        this.atualizarEstatisticas(); // Atualiza as estatísticas
+        alert('Usuários importados com sucesso!');
     }
 
     handleSubmit(e) {

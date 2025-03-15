@@ -725,6 +725,38 @@ h2 {
     justify-content: center;
     flex-wrap: wrap;
 }
+#importButton{
+    background-color: var(--cor-botao-cadastrar);
+    color: var(--cor-texto--botao);
+    padding: 12px 24px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    min-width: 200px;
+    justify-content: center;
+}
+#importButton:hover{
+    background-color: #2f003d; 
+    color: var(--cor-texto--botao);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    
+}
+#importButton i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+    color: var(--cor-primaria);
+}
+
+#importButton:hover i {
+    transform: scale(1.1);
+}
 
 .btn-backup {
     background-color: var(--cor-botao-cadastrar);

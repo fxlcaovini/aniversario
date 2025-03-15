@@ -73,8 +73,14 @@
 
         <div class="acoes-extras">
             <button class="btn-backup" onclick="gerenciador.exportarBackup()">
-                <i class="fas fa-download"></i> Backup
+                <i class="fas fa-download"></i> Exportar
             </button>
+
+            <input type="file" id="fileInput" accept=".json" style="display: none;" />
+            <button id="importButton">
+                <i class="fas fa-upload"></i> Importar
+            </button>
+
             <button class="btn-backup" onclick="gerenciador.solicitarPermissaoNotificacao()">
                 <i class="fas fa-bell"></i> Ativar Notificações
             </button>
