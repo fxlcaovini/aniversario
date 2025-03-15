@@ -200,9 +200,11 @@ class GerenciadorAniversarios {
     }
 
     formatarData(data) {
-        // Ajustando para considerar o fuso horário local
         const dataObj = new Date(data + 'T00:00:00');
-        return dataObj.toLocaleDateString('pt-BR');
+        const dia = String(dataObj.getDate()).padStart(2, '0'); // Adiciona zero à esquerda se necessário
+        const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // Meses começam em 0
+        const ano = dataObj.getFullYear();
+        return `${dia}/${mes}/${ano}`; // Retorna no formato DD/MM/AAAA
     }
 
     verificarAniversarianteDoDia(forcarVerificacao = false) {
