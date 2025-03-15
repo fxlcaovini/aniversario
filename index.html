@@ -20,6 +20,7 @@
                 <input type="text" id="nome" placeholder="Nome do Aniversariante" required>
                 <input type="date" id="dataNascimento" required>
                 <input type="file" id="foto" accept="image/*" class="input-foto">
+                <input type="text" id="pedido" placeholder="Pedido" required>
                 <select id="tipo" required>
                     <option value="sub">Sub</option>
                     <option value="viewer">Viewer</option>
@@ -67,12 +68,7 @@
         </div>
 
         
-        <div class="exportar">
-            <button id="btnExportar" class="btn-exportar" aria-label="Exportar aniversários para calendário">
-                <i class="fas fa-calendar-alt"></i>
-                Exportar para Calendário
-            </button>
-        </div>
+       
 
         <div class="acoes-extras">
             <button class="btn-backup" onclick="gerenciador.exportarBackup()">
@@ -123,10 +119,10 @@
     </div>
 
     <audio id="somAlerta">
-        <source src="./assets/sounds/notification.mp3" type="audio/mpeg">
+        <source src="./assets/feliz-aniversario-kuduro.mp3" type="audio/mpeg">
     </audio>
     <audio id="somConfete">
-        <source src="./assets/sounds/party-horn.mp3" type="audio/mpeg">
+        <source src="./assets/feliz-aniversario-kuduro.mp3" type="audio/mpeg">
     </audio>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>

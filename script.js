@@ -11,7 +11,7 @@ class GerenciadorAniversarios {
         this.inicializar();
 
         // Adicionar o listener para o botão de exportar
-        document.getElementById('btnExportar').addEventListener('click', () => this.exportarParaCalendario());
+    
     }
 
     inicializar() {
@@ -98,6 +98,7 @@ class GerenciadorAniversarios {
                 id: this.form.dataset.id || Date.now().toString(),
                 nome: document.getElementById('nome').value,
                 dataNascimento: document.getElementById('dataNascimento').value,
+                pedido: document.getElementById('pedido').value,
                 tipo: document.getElementById('tipo').value,
                 foto: fotoProcessada
             };
@@ -315,6 +316,7 @@ class GerenciadorAniversarios {
                         <p>Data: ${this.formatarData(aniversariante.dataNascimento)}</p>
                         <p>Idade: ${this.calcularIdade(aniversariante.dataNascimento)} anos</p>
                         <p>Tipo: ${aniversariante.tipo.charAt(0).toUpperCase() + aniversariante.tipo.slice(1)}</p>
+                         <p>Pedido: ${aniversariante.pedido}</p> 
                     </div>
                     <div class="acoes">
                         <button onclick="gerenciador.prepararEdicao('${aniversariante.id}')" class="btn-editar">
@@ -339,7 +341,9 @@ class GerenciadorAniversarios {
         if (aniversariante) {
             document.getElementById('nome').value = aniversariante.nome;
             document.getElementById('dataNascimento').value = aniversariante.dataNascimento;
+            document.getElementById('pedido').value = aniversariante.pedido;
             document.getElementById('tipo').value = aniversariante.tipo;
+    
             // Não podemos definir o valor do input file por segurança
             this.form.dataset.id = id;
             document.querySelector('.btn-cadastrar').textContent = 'Atualizar';
