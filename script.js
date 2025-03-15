@@ -249,38 +249,108 @@ class GerenciadorAniversarios {
 
         const ultimaNotificacao = localStorage.getItem('ultimaNotificacao');
         const dataHoje = hoje.toDateString();
+        
+        const mostrarModal = (mensagem) => {
+            const modal = document.getElementById('modalAniversario');
+            const mensagemAniversario = document.getElementById('mensagemAniversario');
+            mensagemAniversario.textContent = mensagem;
+            modal.style.display = "block"; // Mostra o modal
+        };
+        
+        // Fecha o modal quando o usuário clica no "x"
+        document.getElementById('closeModal').onclick = function() {
+            document.getElementById('modalAniversario').style.display = "none";
+            // Dispara confetes com delay
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }, 0);
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }, 5000);
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }, 10000);
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }, 15000);
+        };
+
+        
+        
+        // Fecha o modal quando o usuário clica fora do modal
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalAniversario');
+            if (event.target === modal) {
+                modal.style.display = "none";
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }, 0);
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }, 5000);
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }, 10000);
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }, 15000);
+            }
+        };
+
+            
+        
 
         if (aniversariantesHoje.length > 0 && (forcarVerificacao || ultimaNotificacao !== dataHoje)) {
             const tocarSomEMostrarAlertas = async () => {
                 try {
-                    const somConfete = document.getElementById('somConfete');
-                    somConfete.volume = 0.5; // Volume mais baixo para o som de festa
+                    // Verifica se o som de alerta já está tocando
+                    if (!this.somAlerta.paused) {
+                        this.somAlerta.pause(); // Pausa o som atual
+                        this.somAlerta.currentTime = 0; // Reinicia o som
+                    }
                     
                     // Toca o som de alerta
-                    this.somAlerta.currentTime = 0;
                     await this.somAlerta.play();
                     
                     // Mostra os alertas e dispara confetes para cada aniversariante
                     aniversariantesHoje.forEach(aniversariante => {
                         const idade = this.calcularIdade(aniversariante.dataNascimento);
-                        alert(`🎉 Hoje é dia de comemoração!\n${aniversariante.nome} está completando ${idade} anos!`);
+                        mostrarModal(`🎉 Feliz aniversário \n${aniversariante.nome}! Parabéns pelos ${idade} anos 🎉`);
                         
-                        // Toca o som de festa junto com os confetes
-                        somConfete.currentTime = 0;
-                        somConfete.play();
-                        
-                        // Dispara confetes coloridos
-                        confetti({
-                            particleCount: 100,
-                            spread: 70,
-                            origin: { y: 0.6 },
-                            colors: ['#D4A373', '#CCD5AE', '#FAEDCD', '#E9DAC1']
-                        });
-
-                        // Dispara mais confetes após um pequeno delay
+                     
                         setTimeout(() => {
-                            somConfete.currentTime = 0;
-                            somConfete.play();
                             confetti({
                                 particleCount: 50,
                                 angle: 60,
@@ -304,20 +374,19 @@ class GerenciadorAniversarios {
                     // Mesmo com erro no som, mostra alertas e confetes
                     aniversariantesHoje.forEach(aniversariante => {
                         const idade = this.calcularIdade(aniversariante.dataNascimento);
-                        alert(`🎉 Hoje é dia de comemoração!\n${aniversariante.nome} está completando ${idade} anos!`);
+                        mostrarModal(`🎉 Feliz aniversário \n${aniversariante.nome}! Parabéns pelos ${idade} anos 🎉`);
                         
-                        confetti({
-                            particleCount: 100,
-                            spread: 70,
-                            origin: { y: 0.6 },
-                            colors: ['#D4A373', '#CCD5AE', '#FAEDCD', '#FFD700']
-                        });
+                        // Dispara confetes coloridos
+                       
                     });
                 }
             };
+            
 
             tocarSomEMostrarAlertas();
+            
         }
+        
     }
 
     configurarFiltros() {
